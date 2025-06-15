@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="CURXAI is The AI Academy for future leaders. Learn AI and lead the future.">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="preload" href="fonts/Nevano.otf" as="font" type="font/otf" crossorigin="anonymous">
@@ -45,6 +46,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            aspect-ratio: 1/1;
         }
 
         .logo img {
@@ -103,8 +105,6 @@
             animation: slideUp 0.8s ease-out forwards;
             padding: 2rem;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
@@ -331,14 +331,13 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             .company-name {
-                font-size: 2.5rem;
-                letter-spacing: 2px;
+                font-size: clamp(2.5rem, 6vw, 8rem);
             }
 
             .tagline {
-                font-size: 1.6rem;
+                font-size: clamp(1.2rem, 3vw, 3.2rem);
             }
 
             .subtitle {
@@ -354,6 +353,7 @@
             }
 
             .social-links {
+                flex-wrap: wrap;
                 gap: 1rem;
             }
 
@@ -365,6 +365,7 @@
             .cta-button {
                 padding: 1.2rem 2.5rem;
                 font-size: 1.1rem;
+                min-height: 48px;
             }
 
             .contact-form {
@@ -375,6 +376,7 @@
             .contact-form h3 {
                 font-size: 1.5rem;
             }
+
         }
     </style>
 </head>
@@ -393,17 +395,14 @@
 
     <main>
         <div class="container">
-            <div ">
-                <p class=" quote-text large">The World is Changing. Fast.</p>
-            </div>
 
-            <div class=>
-                <p class="quote-text medium">While others are getting left behind by AI, we're building the leaders who
-                    will dominate the future.</p>
-            </div>
+            <p class="quote-text large">The World is Changing. Fast.</p>
+            <p class="quote-text medium">While others are getting left behind by AI, we're building the leaders who
+                will dominate the future.</p>
 
-            <form class="contact-form" id="contact-form" name="contact" method="POST" netlify>
-                <input type="hidden" name="form-name" value="contact">
+
+            <form class="contact-form" name="contact" netlify>
+
                 <h3>Ready to Start Your AI Journey?</h3>
 
                 <input type="text" name="name" placeholder="Your Name" required>
@@ -462,39 +461,9 @@
             }, 300);
         }
 
-        // Handle form submission
-        document.getElementById('contact-form').addEventListener('submit', function (e) {
-            e.preventDefault();
 
-            // Show success message
-            const successMessage = document.getElementById('success-message');
-            successMessage.classList.add('show');
-
-            // Reset form
-            this.reset();
-
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                successMessage.classList.remove('show');
-            }, 5000);
-        });
-
-        // Smooth scroll reveal effect
-        window.addEventListener('scroll', () => {
-            const quotes = document.querySelectorAll('.quote');
-            quotes.forEach(quote => {
-                const rect = quote.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight * 0.8;
-
-                if (isVisible && quote.style.opacity !== '1') {
-                    quote.style.transform = 'translateY(0)';
-                    quote.style.opacity = '1';
-                }
-            });
-        });
-
-        // Add hover effects for quotes
-        document.querySelectorAll('.quote').forEach(quote => {
+        // Hover effect
+        quotes.forEach(quote => {
             quote.addEventListener('mouseenter', () => {
                 quote.style.transform = 'translateY(-5px)';
                 quote.style.background = 'rgba(255, 255, 255, 0.08)';
@@ -506,6 +475,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>
